@@ -24,7 +24,8 @@ const cli = Clerc.create()
       for (let entry of entries) {
         let file = path.resolve(dir, entry); // resolves to absolute path
         let stats = await fs.lstat(file);
-        if (stats.isFile()) {
+        // Check for file type here
+        if (stats.isFile() && /\.(jpe?g|png)$/.test(entry)) {
           allFiles.push(file);
         }
       }
