@@ -36,6 +36,7 @@ const cli = Clerc.create()
 
     let groups = allFiles.reduce((groups, file) => {
       const { base, name } = path.parse(file);
+      // @ts-expect-error shrug
       let [, basename, suffix] = name.match(/^(.*?)(@\dx)?$/);
       (groups[basename] = groups[basename] || []).push({ file, base, suffix });
       return groups;
