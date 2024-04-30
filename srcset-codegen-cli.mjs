@@ -3,6 +3,7 @@ import { Clerc } from "clerc";
 import { promises as fs } from "fs";
 import * as path from "path";
 import imageSize from "image-size";
+import camelCase from 'camelcase';
 
 // FYI this code is the junk that chatgpt outputs :D
 
@@ -33,7 +34,6 @@ const cli = Clerc.create()
 
     let groups = allFiles.reduce((groups, file) => {
       const { base, name } = path.parse(file);
-      // @ts-expect-error shrug
       let [, basename, suffix] = name.match(/^(.*?)(@\dx)?$/);
       (groups[basename] = groups[basename] || []).push({ file, base, suffix });
       return groups;
@@ -54,7 +54,7 @@ const cli = Clerc.create()
         ...variantSrcs,
         `const width = ${sizes.width}`,
         `const height = ${sizes.height}`,
-        `export const ${name} = { src, srcSet: \`${srcSet}\`, width, height }`,
+        `export const ${camelCase(name)} = { src, srcSet: \`${srcSet}\`, width, height }`,
       ];
 
       const directoryPath = path.join(
