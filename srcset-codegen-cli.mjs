@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // @ts-check
 import { Clerc } from "clerc";
 import { promises as fs } from "fs";
