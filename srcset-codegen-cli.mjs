@@ -4,7 +4,7 @@
 import { Clerc } from "clerc";
 import { promises as fs } from "fs";
 import * as path from "path";
-// import imageSize from "image-size";
+import imageSize from "image-size";
 import camelCase from 'camelcase';
 
 // FYI this code is the junk that chatgpt outputs :D
