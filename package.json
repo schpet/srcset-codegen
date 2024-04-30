@@ -1,7 +1,8 @@
 {
   "name": "srcset-codegen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
+  "main": "srcset-codegen-cli.mjs",
   "type": "module",
   "bin": {
     "srcset-codegen": "./srcset-codegen-cli.mjs"
@@ -15,7 +16,6 @@
   "dependencies": {
     "@types/node": "^20.12.7",
     "camelcase": "^8.0.0",
-    "clerc": "^0.44.0",
-    "image-size": "^1.1.1"
+    "clerc": "^0.44.0"
   }
 }
