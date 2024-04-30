@@ -42,7 +42,7 @@ const cli = Clerc.create()
     for (let [name, variants] of Object.entries(groups)) {
       let variantSrcs = variants.map(
         (variant) =>
-          `import ${suffixToName(variant.suffix)} from "./${variant.base}"`
+          `import ${suffixToName(variant.suffix)} from "../${variant.base}"`
       );
       let sizes = imageSize(variants.find((v) => !v.suffix).file); // use absolute path to get dimensions
       let srcSet = variants
@@ -57,8 +57,14 @@ const cli = Clerc.create()
         `export const ${name} = { src, srcSet: \`${srcSet}\`, width, height }`,
       ];
 
+      const directoryPath = path.join(
+        context.parameters.path[0],
+        "__generated__"
+      );
+
+      await fs.mkdir(directoryPath, { recursive: true });
       await fs.writeFile(
-        path.join(context.parameters.path[0], `${name}.ts`),
+        path.join(directoryPath, `${name}.ts`),
         output.join("\n")
       );
     }
@@ -74,3 +80,4 @@ function suffixToName(suffix) {
 function suffixToSize(suffix) {
   return suffix ? suffix.slice(1) : "1x";
 }
+
