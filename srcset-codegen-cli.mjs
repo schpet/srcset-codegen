@@ -58,6 +58,7 @@ const cli = Clerc.create()
         `const width = ${sizes.width}`,
         `const height = ${sizes.height}`,
         `export const ${camelCase(name)} = { src, srcSet: \`${srcSet}\`, width, height }`,
+        '',
       ];
 
       const directoryPath = path.join(
