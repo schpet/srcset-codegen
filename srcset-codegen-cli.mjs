@@ -5,30 +5,28 @@ import { Clerc } from "clerc";
 import { promises as fs } from "fs";
 import * as path from "path";
 import imageSize from "image-size";
-import camelCase from 'camelcase';
+import camelCase from "camelcase";
 
 // FYI this code is the junk that chatgpt outputs :D
 
-const cli = Clerc.create()
+Clerc.create()
   .scriptName("srcset-codegen")
-  .description("genreates srcset")
-  .version("1.0.0") // You can use Clerc.create(name, description, version) instead
-  .command("generate", "A foo command", {
-    parameters: ["<path...>"],
-  })
+  .description("Generates srcset")
+  .version("1.0.0")
+  .command("generate", "Generate command", { parameters: ["<path...>"] })
   .on("generate", async (context) => {
-    let paths = context.parameters.path;
-    paths = paths.map((p) => path.resolve(p)); // convert to absolute paths
+    let paths = context.parameters.path.map((p) => path.resolve(p));
 
     let allFiles = [];
 
     for (let dir of paths) {
       let entries = await fs.readdir(dir);
       for (let entry of entries) {
-        let file = path.resolve(dir, entry); // resolves to absolute path
+        let file = path.resolve(dir, entry);
         let stats = await fs.lstat(file);
-        // Check for file type here
-        if (stats.isFile() && /\.(jpe?g|png)$/.test(entry)) {
+        let isInGenerated = file.includes("__generated__");
+
+        if (stats.isFile() && !isInGenerated) {
           allFiles.push(file);
         }
       }
@@ -47,18 +45,20 @@ const cli = Clerc.create()
         (variant) =>
           `import ${suffixToName(variant.suffix)} from "../${variant.base}"`
       );
-      let sizes = imageSize(variants.find((v) => !v.suffix).file); // use absolute path to get dimensions
+      let sizes = imageSize(variants.find((v) => !v.suffix).file);
       let srcSet = variants
         .filter((v) => v.suffix)
         .map((v) => `\${${suffixToName(v.suffix)}} ${suffixToSize(v.suffix)}`)
         .join(", ");
 
+      const exportName = camelCase(name);
+
       let output = [
         ...variantSrcs,
         `const width = ${sizes.width}`,
         `const height = ${sizes.height}`,
-        `export const ${camelCase(name)} = { src, srcSet: \`${srcSet}\`, width, height }`,
-        '',
+        `export const ${exportName} = { src, srcSet: \`${srcSet}\`, width, height }`,
+        "",
       ];
 
       const directoryPath = path.join(
@@ -75,13 +75,11 @@ const cli = Clerc.create()
   })
   .parse();
 
-// converts a suffix like '@2x' to a name like 'src2x'
 function suffixToName(suffix) {
+  // converts a suffix like '@2x' to a name like 'src2x'
   return suffix ? `src${suffix.slice(1)}` : "src";
 }
 
-// converts a suffix like '@2x' to a size like '2x'
 function suffixToSize(suffix) {
   return suffix ? suffix.slice(1) : "1x";
 }
-
