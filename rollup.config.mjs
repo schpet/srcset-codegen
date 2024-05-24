@@ -1,6 +1,7 @@
 // @ts-check
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import resolve from "@rollup/plugin-node-resolve";
 
 export default {
   input: "src/cli.ts",
@@ -11,5 +12,5 @@ export default {
       format: "cjs",
     },
   ],
-  plugins: [typescript(), commonjs()],
+  plugins: [typescript(), resolve(), commonjs()],
 };
