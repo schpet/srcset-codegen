@@ -8,15 +8,24 @@
     "srcset-codegen": "./srcset-codegen-cli.mjs"
   },
   "scripts": {
+    "cli": "tsx src/cli",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@clerc/plugin-help": "^0.44.0",
+    "@clerc/plugin-not-found": "^0.44.0",
+    "@clerc/plugin-strict-flags": "^0.44.0",
+    "@clerc/plugin-version": "^0.44.0",
     "@types/node": "^20.12.7",
     "camelcase": "^8.0.0",
     "clerc": "^0.44.0",
     "image-size": "^1.1.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   }
 }
