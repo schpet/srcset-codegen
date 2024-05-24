@@ -8,7 +8,7 @@ export default {
   output: [
     {
       dir: "./",
-      entryFileNames: "dist/cli.js",
+      entryFileNames: "dist/cli.cjs",
       format: "cjs",
     },
   ],
