@@ -9,7 +9,8 @@
   },
   "scripts": {
     "cli": "tsx src/cli",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:rollup": "rollup -c"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,10 @@
     "image-size": "^1.1.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.18.0",
+    "tslib": "^2.6.2",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   }
