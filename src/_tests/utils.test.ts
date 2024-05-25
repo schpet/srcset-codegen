@@ -33,8 +33,8 @@ describe("isBaseVariant", () => {
 describe("codegen", () => {
   test("generates code", () => {
     let result = utils.codegen("src/_tests/fixtures/smile.png", ["src/_tests/fixtures/smile@2x.png"]);
-    let expected = `import src from "./foo.png";
-import src2x from "./foo@2x.png";
+    let expected = `import src from "./smile.png";
+import src2x from "./smile@2x.png";
 
 let width = 107;
 let height = 107;
