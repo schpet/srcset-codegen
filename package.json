@@ -8,7 +8,7 @@
   },
   "scripts": {
     "cli": "tsx src/cli",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --import tsx --test src/_tests/**/*.test.ts",
     "build:rollup": "rollup -c",
     "build:clean": "npx rimraf -G dist .rollup-cache tsconfig.tsbuildinfo",
     "fmt": "biome format --write ./src"
