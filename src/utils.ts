@@ -1,3 +1,4 @@
+import imageSize, { imageSize } from "image-size";
 import { join, parse } from "path";
 
 export function isScaleVariant(filename: string): boolean {
@@ -87,8 +88,7 @@ export function uniqNames(
 }
 
 export function codegen(base: string, variants: Array<string>): string {
-  // map of size to variant
-  let variantMap = new Map<number, string>();
+  let variantSizeMap = new Map<number, string>();
   for (let variant of variants) {
     let match = variant.match(/@(\d+)x/);
     if (!match) {
@@ -98,15 +98,22 @@ export function codegen(base: string, variants: Array<string>): string {
     if (size == null || isNaN(size)) {
       throw new Error(`could not parse size number from variant ${variant}`);
     }
-    variantMap.set(size, variant);
+    variantSizeMap.set(size, variant);
   }
 
+  let dimensions = imageSize(base);
+  let baseName = parse(base).name;
+
   let typescript = [
-    `import src from "./${base}";`,
-    ...Array.from(variantMap).map(([size, variant]) => {
-      return `import src${size}x from "./${variant}";`;
+    `import src from "./${baseName}";`,
+    ...Array.from(variantSizeMap).map(([size, variant]) => {
+      let variantName = parse(variant).name;
+      return `import src${size}x from "./${variantName}";`;
     }),
-    ''
+    '',
+    `let width = ${dimensions.width};`,
+    `let height = ${dimensions.height};`,
+    "",
   ].join("\n");
 
   return typescript;

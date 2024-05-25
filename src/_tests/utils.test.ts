@@ -32,9 +32,12 @@ describe("isBaseVariant", () => {
 
 describe("codegen", () => {
   test("generates code", () => {
-    let result = utils.codegen("foo.png", ["foo@2x.png"]);
+    let result = utils.codegen("src/_tests/fixtures/smile.png", ["src/_tests/fixtures/smile@2x.png"]);
     let expected = `import src from "./foo.png";
 import src2x from "./foo@2x.png";
+
+let width = 107;
+let height = 107;
 `
 
     assert.strictEqual(result, expected);
