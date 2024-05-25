@@ -26,17 +26,18 @@ export async function generate(
 
   let uniqBases = utils.uniqNames(bases);
 
-  let imageVariants = new Map<
-    string,
-    { base: string; variants: Array<string> }
-  >();
+  let imageVariants = new Map<string, Array<string>>();
 
   for (let base of uniqBases) {
     // example base: foo.png or sd/foo.png
     // example variants: foo@2x.png, sd/foo@2x.png etc
     let variantsForBase = Array.from(variants).filter((variant) => {
+      return utils.isBaseVariant(base, variant);
+    });
+    imageVariants.set(base, variantsForBase);
   }
 
   let result: CodegenResult = new Map();
+
   return result;
 }

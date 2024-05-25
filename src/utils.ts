@@ -85,3 +85,29 @@ export function uniqNames(
   }
   return new Set(uniqPaths.values());
 }
+
+export function codegen(base: string, variants: Array<string>): string {
+  // map of size to variant
+  let variantMap = new Map<number, string>();
+  for (let variant of variants) {
+    let match = variant.match(/@(\d+)x/);
+    if (!match) {
+      throw new Error(`could not parse size from variant ${variant}`);
+    }
+    let size = parseInt(match[1], 10);
+    if (size == null || isNaN(size)) {
+      throw new Error(`could not parse size number from variant ${variant}`);
+    }
+    variantMap.set(size, variant);
+  }
+
+  let typescript = [
+    `import src from "./${base}";`,
+    ...Array.from(variantMap).map(([size, variant]) => {
+      return `import src${size}x from "./${variant}";`;
+    }),
+    ''
+  ].join("\n");
+
+  return typescript;
+}
