@@ -5,6 +5,18 @@ export function isScaleVariant(filename: string): boolean {
   return name.match(/@(\d+)x$/) !== null;
 }
 
+export function isBaseVariant(base: string, filename: string): boolean {
+  if (!isScaleVariant(filename)) {
+    throw new Error(`path ${filename} is not a scale variant`);
+  }
+
+  let baseParsed = parse(base);
+  let filenameParsed = parse(filename);
+  let isNameMatch = filenameParsed.name.startsWith(baseParsed.name + "@");
+
+  return isNameMatch && baseParsed.ext === filenameParsed.ext;
+}
+
 export function isImage(
   filename: string,
   imageExtensions = IMAGE_EXTENSIONS
@@ -50,16 +62,16 @@ const IMAGE_EXTENSIONS: Array<string> = [
 ];
 
 /**
- * given paths like ["foo.jpg", "foo.png", "foo.svg"], return ["foo.png"]
+ * given filenames like foo.jpg, foo.png, foo.svg return foo.png
  */
 export function uniqNames(
-  paths: Set<string>,
+  filenames: Set<string>,
   extensionOrder = IMAGE_EXTENSIONS
 ): Set<string> {
   let uniqPaths = new Map<string, string>();
-  for (let path of paths) {
+  for (let path of filenames) {
     let parsed = parse(path);
-    let name = join(parsed.dir, parsed.name);
+    let name = parsed.name;
     let existingPath = uniqPaths.get(name);
     if (existingPath == null) {
       uniqPaths.set(name, path);

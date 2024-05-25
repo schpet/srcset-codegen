@@ -13,29 +13,30 @@ export async function generate(
 ): Promise<CodegenResult> {
   console.log("Generating srcset in dirx: ", options.directory);
 
-  let images = {
-    bases: new Set<string>(),
-    variants: new Set<string>(),
-  };
+  let bases = new Set<string>();
+  let variants = new Set<string>();
 
   for (let object of await fs.readdir(options.directory)) {
     if (utils.isScaleVariant(object)) {
-      images.variants.add(object);
+      variants.add(object);
     } else if (utils.isImage(object)) {
-      images.bases.add(object);
+      bases.add(object);
     }
   }
+
+  let uniqBases = utils.uniqNames(bases);
 
   let imageVariants = new Map<
     string,
     { base: string; variants: Array<string> }
   >();
-  for (let base of images.bases) {
-    // let variants = Array.from(images.variants).filter((variant) =>
-    //   variant.startsWith(base)
-    // );
-    // imageVariants.set(base, variants);
+
+  for (let base of uniqBases) {
+    // example base: foo.png or sd/foo.png
+    // example variants: foo@2x.png, sd/foo@2x.png etc
+    let variantsForBase = Array.from(variants).filter((variant) => {
   }
 
   let result: CodegenResult = new Map();
+  return result;
 }

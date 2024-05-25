@@ -18,8 +18,14 @@ describe("uniqNames", () => {
     let input = new Set(["foo.jpg", "foo.png", "foo.svg"]);
     assert.deepStrictEqual(utils.uniqNames(input), new Set(["foo.png"]));
   })
-  test("nested paths", () => {
-    let input = new Set(["foo.png", "foo.svg", "bar/foo.png"]);
-    assert.deepStrictEqual(utils.uniqNames(input), new Set(["foo.png", "bar/foo.png"]));
+})
+
+describe("isBaseVariant", () => {
+  test("foo@2x.png is a base variant of foo.png", () => {
+    assert.strictEqual(utils.isBaseVariant("foo.png", "foo@2x.png"), true);
+  })
+
+  test("foo@2x.png is not a base variant of bar.png", () => {
+    assert.strictEqual(utils.isBaseVariant("bar.png", "foo@2x.png"), false);
   })
 })
