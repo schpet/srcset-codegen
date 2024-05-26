@@ -15,6 +15,7 @@ export async function generate(
 
   let bases = new Set<string>();
   let variants = new Set<string>();
+  let directories = new Set<string>();
 
   for (let object of await fs.readdir(options.directory)) {
     let path = join(options.directory, object);
@@ -22,6 +23,8 @@ export async function generate(
       variants.add(path);
     } else if (utils.isImage(object)) {
       bases.add(path);
+    } else if ((await fs.stat(path)).isDirectory()) {
+      directories.add(path);
     }
   }
 
@@ -42,11 +45,14 @@ export async function generate(
 
   for (let [base, variants] of imageVariants) {
     let code = utils.codegen(base, variants);
-    let parsed = parse(base);
-    let name = parsed.name;
-    let path = join(parse(base).dir, name + ".ts");
-    await fs.writeFile(path, code);
     result.set(base, code);
+  }
+
+  for (let directory of directories) {
+    let subResult = await generate({ directory });
+    for (let [key, value] of subResult) {
+      result.set(key, value);
+    }
   }
 
   return result;
