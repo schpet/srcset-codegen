@@ -1,5 +1,5 @@
 import { promises as fs } from "node:fs";
-import * as utils from "./utils";
+import * as utils from "./util";
 import { join, parse } from "node:path";
 
 type GenerateOptions = {

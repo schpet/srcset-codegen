@@ -1,6 +1,6 @@
 import { describe, test } from "node:test"
 import assert from "node:assert"
-import * as utils from "../utils"
+import * as utils from "../util"
 import exp from "node:constants"
 
 describe("isScaleVariant", () => {
