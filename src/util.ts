@@ -118,6 +118,7 @@ export function codegen(base: string, variants: Array<string>): string {
     `let width = ${dimensions.width};`,
     `let height = ${dimensions.height};`,
 		`let srcSet = \`${srcSet}\`;`,
+		`export default { src, width, height, srcSet };`,
     "",
   ].join("\n");
 

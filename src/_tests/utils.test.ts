@@ -41,6 +41,7 @@ import src2x from "./smile@2x.png";
 let width = 107;
 let height = 107;
 let srcSet = \`\${src2x} 2x\`;
+export default { src, width, height, srcSet };
 `
 
 		assert.strictEqual(result, expected)
@@ -57,6 +58,7 @@ import src3x from "./smile@3x.png";
 let width = 107;
 let height = 107;
 let srcSet = \`\${src2x} 2x, \${src3x} 3x\`;
+export default { src, width, height, srcSet };
 `
 
 		assert.strictEqual(result, expected)
