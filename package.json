@@ -6,6 +6,10 @@
 	"bin": {
 		"srcset-codegen": "./bin/srcset-codegen.mjs"
 	},
+  "files": [
+    "bin",
+    "dist"
+  ],
 	"scripts": {
 		"cli": "tsx src/cli",
 		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
