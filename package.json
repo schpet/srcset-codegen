@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"cli": "tsx src/cli",
-		"test": "node --import tsx --test src/_tests/**/*.test.ts",
+    "test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
 		"build": "tsup",
 		"check": "biome check --apply .",
 		"lint": "biome lint .",
@@ -32,6 +32,7 @@
 		"@rollup/plugin-commonjs": "^25.0.8",
 		"@rollup/plugin-node-resolve": "^15.2.3",
 		"@rollup/plugin-typescript": "^11.1.6",
+		"glob": "^10.4.1",
 		"tslib": "^2.6.2",
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.0",
