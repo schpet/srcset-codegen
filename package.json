@@ -11,7 +11,8 @@
 		"test": "node --import tsx --test src/_tests/**/*.test.ts",
 		"build": "tsup",
 		"fmt": "biome format --write .",
-		"lint": "biome lint ."
+		"lint": "biome lint .",
+    "ci": "biome ci ."
 	},
 	"keywords": [],
 	"author": "",
