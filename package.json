@@ -12,7 +12,7 @@
 		"build": "tsup",
 		"fmt": "biome format --write .",
 		"lint": "biome lint .",
-    "ci": "biome ci ."
+		"ci": "biome ci ."
 	},
 	"keywords": [],
 	"author": "",
