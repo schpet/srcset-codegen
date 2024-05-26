@@ -1,5 +1,5 @@
-import imageSize, { imageSize } from "image-size";
-import { join, parse } from "path";
+import imageSize from "image-size";
+import { parse } from "path";
 
 export function isScaleVariant(filename: string): boolean {
   let name = parse(filename).name;
@@ -102,7 +102,7 @@ export function codegen(base: string, variants: Array<string>): string {
   }
 
   let dimensions = imageSize(base);
-  let baseName = parse(base).base
+  let baseName = parse(base).base;
 
   let typescript = [
     `import src from "./${baseName}";`,
