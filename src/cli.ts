@@ -1,9 +1,9 @@
-import { Clerc } from "clerc"
+import { friendlyErrorPlugin } from "@clerc/plugin-friendly-error"
 import { helpPlugin } from "@clerc/plugin-help"
-import { versionPlugin } from "@clerc/plugin-version"
 import { notFoundPlugin } from "@clerc/plugin-not-found"
 import { strictFlagsPlugin } from "@clerc/plugin-strict-flags"
-import { friendlyErrorPlugin } from "@clerc/plugin-friendly-error"
+import { versionPlugin } from "@clerc/plugin-version"
+import { Clerc } from "clerc"
 import { generate, write } from "./lib"
 
 Clerc.create()

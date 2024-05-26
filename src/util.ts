@@ -1,5 +1,5 @@
-import imageSize from "image-size"
 import { parse } from "node:path"
+import imageSize from "image-size"
 
 export function isScaleVariant(filename: string): boolean {
 	let name = parse(filename).name

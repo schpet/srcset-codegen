@@ -1,7 +1,7 @@
-import { describe, test } from "node:test"
 import assert from "node:assert"
-import * as utils from "../util"
 import exp from "node:constants"
+import { describe, test } from "node:test"
+import * as utils from "../util"
 
 describe("isScaleVariant", () => {
 	test("foo.png is not a scale variant", () => {

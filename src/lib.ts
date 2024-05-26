@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs"
-import * as utils from "./util"
 import { join, parse } from "node:path"
+import * as utils from "./util"
 
 type GenerateOptions = {
 	directory: string

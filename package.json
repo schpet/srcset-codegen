@@ -10,7 +10,7 @@
 		"cli": "tsx src/cli",
 		"test": "node --import tsx --test src/_tests/**/*.test.ts",
 		"build": "tsup",
-		"fmt": "biome format --write .",
+		"check": "biome check --apply .",
 		"lint": "biome lint .",
 		"ci": "biome ci ."
 	},
