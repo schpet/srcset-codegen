@@ -22,15 +22,9 @@
 		"tsx": "^4.11.0",
 		"typescript": "^5.4.5"
 	},
-	"files": [
-		"bin",
-		"dist"
-	],
+	"files": ["bin", "dist"],
 	"homepage": "https://github.com/schpet/srcset-codegen#readme",
-	"keywords": [
-		"codegen",
-		"images"
-	],
+	"keywords": ["codegen", "images"],
 	"license": "ISC",
 	"repository": {
 		"type": "git",
@@ -39,6 +33,7 @@
 	"scripts": {
 		"build": "tsup",
 		"check": "biome check --apply .",
+		"fix": "biome check --apply-unsafe .",
 		"ci": "biome ci .",
 		"cli": "tsx src/cli",
 		"lint": "biome lint .",
