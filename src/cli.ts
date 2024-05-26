@@ -3,7 +3,7 @@ import { helpPlugin } from "@clerc/plugin-help"
 import { versionPlugin } from "@clerc/plugin-version"
 import { notFoundPlugin } from "@clerc/plugin-not-found"
 import { strictFlagsPlugin } from "@clerc/plugin-strict-flags"
-import { generate } from "./lib"
+import { generate, write } from "./lib"
 
 Clerc.create()
 	.scriptName("srcset-codegen")
@@ -18,6 +18,7 @@ Clerc.create()
 	})
 	.on("generate", async (context) => {
 		let directory = context.parameters.directory
-		generate({ directory })
+		const result = await generate({ directory })
+		await write(result)
 	})
 	.parse()
