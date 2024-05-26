@@ -1,6 +1,6 @@
 {
 	"name": "srcset-codegen",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "",
 	"type": "module",
 	"bin": {
@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"cli": "tsx src/cli",
-    "test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
+		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
 		"build": "tsup",
 		"check": "biome check --apply .",
 		"lint": "biome lint .",
