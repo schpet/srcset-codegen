@@ -40,6 +40,23 @@ import src2x from "./smile@2x.png";
 
 let width = 107;
 let height = 107;
+let srcSet = \`\${src2x} 2x\`;
+`
+
+		assert.strictEqual(result, expected)
+	})
+	test("generates more variants", () => {
+		let result = utils.codegen("src/_tests/fixtures/smile.png", [
+			"src/_tests/fixtures/smile@2x.png",
+			"src/_tests/fixtures/smile@3x.png",
+		])
+		let expected = `import src from "./smile.png";
+import src2x from "./smile@2x.png";
+import src3x from "./smile@3x.png";
+
+let width = 107;
+let height = 107;
+let srcSet = \`\${src2x} 2x, \${src3x} 3x\`;
 `
 
 		assert.strictEqual(result, expected)
