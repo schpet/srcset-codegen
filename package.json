@@ -4,7 +4,7 @@
 	"version": "1.0.12",
 	"author": "schpet",
 	"bin": {
-		"srcset-codegen": "./bin/srcset-codegen.mjs"
+		"srcset-codegen": "bin/srcset-codegen.mjs"
 	},
 	"bugs": {
 		"url": "https://github.com/schpet/srcset-codegen/issues"
