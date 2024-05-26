@@ -104,9 +104,11 @@ export function codegen(base: string, variants: Array<string>): string {
 
   let dimensions = imageSize(base);
   let baseName = parse(base).base;
-	let srcSet = variantSizeArray.map(([size, variant]) => {
-		return `\${${variantName(size)}} ${size}x`;
-	}).join(", ");
+  let srcSet = variantSizeArray
+    .map(([size, variant]) => {
+      return `\${${variantName(size)}} ${size}x`;
+    })
+    .join(", ");
 
   let typescript = [
     `import src from "./${baseName}";`,
@@ -117,8 +119,13 @@ export function codegen(base: string, variants: Array<string>): string {
     "",
     `let width = ${dimensions.width};`,
     `let height = ${dimensions.height};`,
-		`let srcSet = \`${srcSet}\`;`,
-		`export default { src, width, height, srcSet };`,
+    ...(srcSet
+      ? [
+          `let srcSet = \`${srcSet}\`;`,
+          `export default { src, width, height, srcSet };`,
+        ]
+      : [`export default { src, width, height };`]),
+
     "",
   ].join("\n");
 
@@ -126,5 +133,5 @@ export function codegen(base: string, variants: Array<string>): string {
 }
 
 function variantName(size: number): string {
-	return `src${size}x`;
+  return `src${size}x`;
 }

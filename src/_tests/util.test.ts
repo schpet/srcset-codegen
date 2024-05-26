@@ -63,4 +63,16 @@ export default { src, width, height, srcSet };
 
 		assert.strictEqual(result, expected)
 	})
+
+	test("it doesn't generate a srcset if there are no variants", () => {
+		let result = utils.codegen("src/_tests/fixtures/smile.png", [])
+		let expected = `import src from "./smile.png";
+
+let width = 107;
+let height = 107;
+export default { src, width, height };
+`
+
+		assert.strictEqual(result, expected)
+	})
 })
