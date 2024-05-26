@@ -30,15 +30,9 @@
 		"tsx": "^4.11.0",
 		"typescript": "^5.4.5"
 	},
-	"files": [
-		"bin",
-		"dist"
-	],
+	"files": ["bin", "dist"],
 	"homepage": "https://github.com/schpet/srcset-codegen#readme",
-	"keywords": [
-		"codegen",
-		"images"
-	],
+	"keywords": ["codegen", "images"],
 	"license": "ISC",
 	"module": "dist/index.mjs",
 	"repository": {
