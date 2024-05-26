@@ -1,5 +1,5 @@
 import imageSize from "image-size"
-import { parse } from "path"
+import { parse } from "node:path"
 
 export function isScaleVariant(filename: string): boolean {
 	let name = parse(filename).name
@@ -13,7 +13,7 @@ export function isBaseVariant(base: string, filename: string): boolean {
 
 	let baseParsed = parse(base)
 	let filenameParsed = parse(filename)
-	let isNameMatch = filenameParsed.name.startsWith(baseParsed.name + "@")
+	let isNameMatch = filenameParsed.name.startsWith(`${baseParsed.name}@`)
 
 	return isNameMatch && baseParsed.ext === filenameParsed.ext
 }
@@ -94,8 +94,8 @@ export function codegen(base: string, variants: Array<string>): string {
 		if (!match) {
 			throw new Error(`could not parse size from variant ${variant}`)
 		}
-		let size = parseInt(match[1], 10)
-		if (size == null || isNaN(size)) {
+		let size = Number.parseInt(match[1], 10)
+		if (size == null || Number.isNaN(size)) {
 			throw new Error(`could not parse size number from variant ${variant}`)
 		}
 		variantSizeMap.set(size, variant)
@@ -122,9 +122,9 @@ export function codegen(base: string, variants: Array<string>): string {
 		...(srcSet
 			? [
 					`let srcSet = \`${srcSet}\`;`,
-					`export default { src, width, height, srcSet };`,
+					"export default { src, width, height, srcSet };",
 				]
-			: [`export default { src, width, height };`]),
+			: ["export default { src, width, height };"]),
 
 		"",
 	].join("\n")
