@@ -1,38 +1,39 @@
 {
-  "name": "srcset-codegen",
-  "version": "1.0.7",
-  "description": "",
-  "type": "module",
-  "bin": {
-    "srcset-codegen": "./bin/srcset-codegen.mjs"
-  },
-  "scripts": {
-    "cli": "tsx src/cli",
-    "test": "node --import tsx --test src/_tests/**/*.test.ts",
-    "build": "tsup",
-    "fmt": "biome format --write ./src"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@clerc/plugin-help": "^0.44.0",
-    "@clerc/plugin-not-found": "^0.44.0",
-    "@clerc/plugin-strict-flags": "^0.44.0",
-    "@clerc/plugin-version": "^0.44.0",
-    "@types/node": "^20.12.7",
-    "camelcase": "^8.0.0",
-    "clerc": "^0.44.0",
-    "image-size": "^1.1.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@rollup/plugin-commonjs": "^25.0.8",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "tslib": "^2.6.2",
-    "tsup": "^8.0.2",
-    "tsx": "^4.11.0",
-    "typescript": "^5.4.5"
-  }
+	"name": "srcset-codegen",
+	"version": "1.0.7",
+	"description": "",
+	"type": "module",
+	"bin": {
+		"srcset-codegen": "./bin/srcset-codegen.mjs"
+	},
+	"scripts": {
+		"cli": "tsx src/cli",
+		"test": "node --import tsx --test src/_tests/**/*.test.ts",
+		"build": "tsup",
+		"fmt": "biome format --write .",
+		"lint": "biome lint ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@clerc/plugin-help": "^0.44.0",
+		"@clerc/plugin-not-found": "^0.44.0",
+		"@clerc/plugin-strict-flags": "^0.44.0",
+		"@clerc/plugin-version": "^0.44.0",
+		"@types/node": "^20.12.7",
+		"camelcase": "^8.0.0",
+		"clerc": "^0.44.0",
+		"image-size": "^1.1.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
+		"@rollup/plugin-commonjs": "^25.0.8",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"tslib": "^2.6.2",
+		"tsup": "^8.0.2",
+		"tsx": "^4.11.0",
+		"typescript": "^5.4.5"
+	}
 }
