@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import * as utils from "./utils";
-import { parse } from "node:path";
+import { join, parse } from "node:path";
 
 type GenerateOptions = {
   directory: string;
@@ -17,10 +17,11 @@ export async function generate(
   let variants = new Set<string>();
 
   for (let object of await fs.readdir(options.directory)) {
+    let path = join(options.directory, object);
     if (utils.isScaleVariant(object)) {
-      variants.add(object);
+      variants.add(path);
     } else if (utils.isImage(object)) {
-      bases.add(object);
+      bases.add(path);
     }
   }
 
@@ -38,6 +39,15 @@ export async function generate(
   }
 
   let result: CodegenResult = new Map();
+
+  for (let [base, variants] of imageVariants) {
+    let code = utils.codegen(base, variants);
+    let parsed = parse(base);
+    let name = parsed.name;
+    let path = join(parse(base).dir, name + ".ts");
+    await fs.writeFile(path, code);
+    result.set(base, code);
+  }
 
   return result;
 }
