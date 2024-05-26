@@ -1,26 +1,14 @@
 {
 	"name": "srcset-codegen",
-	"version": "1.0.10",
 	"description": "",
-	"type": "module",
+	"version": "1.0.10",
+	"author": "schpet",
 	"bin": {
 		"srcset-codegen": "./bin/srcset-codegen.mjs"
 	},
-	"files": [
-		"bin",
-		"dist"
-	],
-	"scripts": {
-		"cli": "tsx src/cli",
-		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
-		"build": "tsup",
-		"check": "biome check --apply .",
-		"lint": "biome lint .",
-		"ci": "biome ci ."
+	"bugs": {
+		"url": "https://github.com/schpet/srcset-codegen/issues"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
 	"dependencies": {
 		"@clerc/plugin-help": "^0.44.0",
 		"@clerc/plugin-not-found": "^0.44.0",
@@ -41,5 +29,22 @@
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.0",
 		"typescript": "^5.4.5"
+	},
+	"files": ["bin", "dist"],
+	"homepage": "https://github.com/schpet/srcset-codegen#readme",
+	"keywords": ["codegen", "images"],
+	"license": "ISC",
+	"module": "dist/index.mjs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/schpet/srcset-codegen.git"
+	},
+	"scripts": {
+		"build": "tsup",
+		"check": "biome check --apply .",
+		"ci": "biome ci .",
+		"cli": "tsx src/cli",
+		"lint": "biome lint .",
+		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\""
 	}
 }
