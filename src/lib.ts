@@ -60,6 +60,9 @@ export async function generate(
 
 export const write = async (result: CodegenResult) => {
 	for (let [path, typescript] of result) {
-		await fs.writeFile(`${path}.ts`, typescript)
+    let name = parse(path).name
+    let directory = parse(path).dir
+    let dest = join(directory, `${name}.ts`)
+		await fs.writeFile(dest, typescript)
 	}
 }
