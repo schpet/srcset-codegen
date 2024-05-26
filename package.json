@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "bin": {
-    "srcset-codegen": "./dist/cli.cjs"
+    "srcset-codegen": "./bin/srcset-codegen.mjs"
   },
   "scripts": {
     "cli": "tsx src/cli",
@@ -16,7 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@clerc/plugin-friendly-error": "^0.44.0",
     "@clerc/plugin-help": "^0.44.0",
     "@clerc/plugin-not-found": "^0.44.0",
     "@clerc/plugin-strict-flags": "^0.44.0",
