@@ -1,15 +1,15 @@
 {
 	"name": "srcset-codegen",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "",
 	"type": "module",
 	"bin": {
 		"srcset-codegen": "./bin/srcset-codegen.mjs"
 	},
-  "files": [
-    "bin",
-    "dist"
-  ],
+	"files": [
+		"bin",
+		"dist"
+	],
 	"scripts": {
 		"cli": "tsx src/cli",
 		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\"",
