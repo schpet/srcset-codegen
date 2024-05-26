@@ -3,6 +3,7 @@ import { helpPlugin } from "@clerc/plugin-help";
 import { versionPlugin } from "@clerc/plugin-version";
 import { notFoundPlugin } from "@clerc/plugin-not-found";
 import { strictFlagsPlugin } from "@clerc/plugin-strict-flags";
+import { friendlyErrorPlugin } from "@clerc/plugin-friendly-error";
 import { generate, write } from "./lib";
 
 Clerc.create()
@@ -13,6 +14,7 @@ Clerc.create()
   .use(versionPlugin())
   .use(notFoundPlugin())
   .use(strictFlagsPlugin())
+  .use(friendlyErrorPlugin())
   .command("generate", "Generate ts files for all images", {
     parameters: ["<directory>"],
   })

@@ -4,19 +4,19 @@
   "description": "",
   "type": "module",
   "bin": {
-    "srcset-codegen": "./srcset-codegen-cli.mjs"
+    "srcset-codegen": "./dist/cli.cjs"
   },
   "scripts": {
     "cli": "tsx src/cli",
     "test": "node --import tsx --test src/_tests/**/*.test.ts",
-    "build:rollup": "rollup -c",
-    "build:clean": "npx rimraf -G dist .rollup-cache tsconfig.tsbuildinfo",
+    "build": "tsup",
     "fmt": "biome format --write ./src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@clerc/plugin-friendly-error": "^0.44.0",
     "@clerc/plugin-help": "^0.44.0",
     "@clerc/plugin-not-found": "^0.44.0",
     "@clerc/plugin-strict-flags": "^0.44.0",
@@ -31,8 +31,8 @@
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "rollup": "^4.18.0",
     "tslib": "^2.6.2",
+    "tsup": "^8.0.2",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   }
