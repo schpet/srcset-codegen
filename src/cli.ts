@@ -1,3 +1,4 @@
+import watcher from "@parcel/watcher"
 import {
 	Clerc,
 	friendlyErrorPlugin,
@@ -5,9 +6,8 @@ import {
 	notFoundPlugin,
 	strictFlagsPlugin,
 	versionPlugin,
-} from "clerc";
-import { generateCmd, generateCode, write } from "./lib";
-import watcher from "@parcel/watcher";
+} from "clerc"
+import { generateCmd, generateCode, write } from "./lib"
 
 Clerc.create()
 	.scriptName("srcset-codegen")
@@ -30,26 +30,26 @@ Clerc.create()
 		},
 	})
 	.on("generate", async (context) => {
-		let directory = context.parameters.directory;
-		await generateCmd({ directory });
+		let directory = context.parameters.directory
+		await generateCmd({ directory })
 
 		if (context.flags.watch) {
-			console.log(`Watching for changes in ${directory}…`);
+			console.log(`Watching for changes in ${directory}…`)
 			await watcher.subscribe(
 				directory,
 				async (err) => {
 					if (err) {
-						console.error("Uh oh", err);
-						process.exit(1);
+						console.error("Uh oh", err)
+						process.exit(1)
 					} else {
-						console.log("Generating outputs");
-						await generateCmd({ directory });
+						console.log("Generating outputs")
+						await generateCmd({ directory })
 					}
 				},
 				{
 					ignore: ["**/*.ts"],
-				}
-			);
+				},
+			)
 		}
 	})
-	.parse();
+	.parse()
