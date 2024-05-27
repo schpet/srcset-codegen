@@ -10,6 +10,7 @@
 		"url": "https://github.com/schpet/srcset-codegen/issues"
 	},
 	"dependencies": {
+		"@parcel/watcher": "^2.4.1",
 		"clerc": "^0.44.0",
 		"image-size": "^1.1.1"
 	},

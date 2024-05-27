@@ -5,8 +5,9 @@ import {
 	notFoundPlugin,
 	strictFlagsPlugin,
 	versionPlugin,
-} from "clerc"
-import { generate, write } from "./lib"
+} from "clerc";
+import { generateCmd, generateCode, write } from "./lib";
+import watcher from "@parcel/watcher";
 
 Clerc.create()
 	.scriptName("srcset-codegen")
@@ -19,10 +20,36 @@ Clerc.create()
 	.use(friendlyErrorPlugin())
 	.command("generate", "Generate ts files for all images", {
 		parameters: ["<directory>"],
+		flags: {
+			watch: {
+				type: Boolean,
+				alias: "w",
+				default: false,
+				description: "Automatically regenerate on file changes",
+			},
+		},
 	})
 	.on("generate", async (context) => {
-		let directory = context.parameters.directory
-		const result = await generate({ directory })
-		await write(result)
+		let directory = context.parameters.directory;
+		await generateCmd({ directory });
+
+		if (context.flags.watch) {
+			console.log(`Watching for changes in ${directory}…`);
+			await watcher.subscribe(
+				directory,
+				async (err) => {
+					if (err) {
+						console.error("Uh oh", err);
+						process.exit(1);
+					} else {
+						console.log("Generating outputs");
+						await generateCmd({ directory });
+					}
+				},
+				{
+					ignore: ["**/*.ts"],
+				}
+			);
+		}
 	})
-	.parse()
+	.parse();
