@@ -3,7 +3,7 @@ import test from "node:test"
 import * as lib from "../lib"
 
 test("generate", async () => {
-	let result = await lib.generate({ directory: "src/_tests/fixtures" })
+	let result = await lib.generateCode({ directory: "src/_tests/fixtures" })
 	let keys = Array.from(result.keys())
 	assert.deepEqual(keys, [
 		"src/_tests/fixtures/single.png",

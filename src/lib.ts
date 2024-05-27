@@ -8,7 +8,12 @@ type GenerateOptions = {
 
 type CodegenResult = Map<string, string>
 
-export async function generate(
+export const generateCmd = async (options: GenerateOptions) => {
+	const code = await generateCode(options)
+	await write(code)
+}
+
+export async function generateCode(
 	options: GenerateOptions,
 ): Promise<CodegenResult> {
 	let bases = new Set<string>()
@@ -45,7 +50,7 @@ export async function generate(
 	}
 
 	for (let directory of directories) {
-		let subResult = await generate({ directory })
+		let subResult = await generateCode({ directory })
 		for (let [key, value] of subResult) {
 			result.set(key, value)
 		}
