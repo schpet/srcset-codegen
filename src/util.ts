@@ -124,11 +124,11 @@ export function codegen(
 			return `import ${variantName(size)} from "./${base}";`
 		}),
 		"",
-		`let width = ${dimensions.width};`,
-		`let height = ${dimensions.height};`,
+		`const width = ${dimensions.width};`,
+		`const height = ${dimensions.height};`,
 		...(srcSet
 			? [
-					`let srcSet = \`${srcSet}\`;`,
+					`const srcSet = \`${srcSet}\`;`,
 					"export default { src, width, height, srcSet };",
 				]
 			: ["export default { src, width, height };"]),
