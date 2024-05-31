@@ -7,12 +7,10 @@ import {
 	strictFlagsPlugin,
 	versionPlugin,
 } from "clerc"
-import { generateCmd, generateCode, write } from "./lib"
+import { generateCmd } from "./lib"
+import { description, name, version } from '../package.json'
 
-Clerc.create()
-	.scriptName("srcset-codegen")
-	.description("Generates srcset")
-	.version("0.0.1")
+Clerc.create(name, version, description)
 	.use(helpPlugin())
 	.use(versionPlugin())
 	.use(notFoundPlugin())

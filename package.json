@@ -1,6 +1,6 @@
 {
 	"name": "srcset-codegen",
-	"description": "",
+	"description": "CLI to generates typescript srcset, width, height attributes from images in a directory",
 	"version": "1.0.16",
 	"author": "schpet",
 	"bin": {
