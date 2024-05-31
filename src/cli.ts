@@ -9,7 +9,7 @@ import {
 import { description, name, version } from "../package.json"
 import { generate } from "./commands/generate"
 
-Clerc.create(name, version, description)
+Clerc.create(name, description, version)
 	.use(helpPlugin())
 	.use(versionPlugin())
 	.use(notFoundPlugin())
