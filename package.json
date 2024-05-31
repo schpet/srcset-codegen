@@ -41,9 +41,9 @@
 	},
 	"scripts": {
 		"build": "tsup",
-		"dev": "tsup --watch",
 		"check": "biome check --apply .",
 		"ci": "biome ci .",
+		"dev": "tsup --watch",
 		"fix": "biome check --apply-unsafe .",
 		"test": "vitest"
 	}

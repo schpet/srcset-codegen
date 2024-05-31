@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test } from "vitest"
 import * as lib from "../lib"
 
 test("generate", async () => {
