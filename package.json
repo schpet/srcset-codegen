@@ -17,7 +17,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
 		"@types/node": "^20.12.7",
-		"glob": "^10.4.1",
 		"tslib": "^2.6.2",
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.0",
@@ -42,11 +41,10 @@
 	},
 	"scripts": {
 		"build": "tsup",
+		"dev": "tsup --watch",
 		"check": "biome check --apply .",
 		"ci": "biome ci .",
-		"cli": "tsx src/cli",
 		"fix": "biome check --apply-unsafe .",
-		"lint": "biome lint .",
-		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\""
+		"test": "vitest"
 	}
 }
