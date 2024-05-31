@@ -1,31 +1,30 @@
-import assert from "node:assert"
-import { describe, test } from "node:test"
+import { describe, expect, test } from "vitest"
 import * as utils from "../util"
 
 describe("isScaleVariant", () => {
 	test("foo.png is not a scale variant", () => {
-		assert.strictEqual(utils.isScaleVariant("foo.png"), false)
+		expect(utils.isScaleVariant("foo.png")).toBe(false)
 	})
 
 	test("foo@2x.png is a scale variant", () => {
-		assert.strictEqual(utils.isScaleVariant("foo@2x.png"), true)
+		expect(utils.isScaleVariant("foo@2x.png")).toBe(true)
 	})
 })
 
 describe("uniqNames", () => {
 	test("given paths like ['foo.jpg', 'foo.png', 'foo.svg'], return ['foo.png']", () => {
 		let input = new Set(["foo.jpg", "foo.png", "foo.svg"])
-		assert.deepStrictEqual(utils.uniqNames(input), new Set(["foo.png"]))
+		expect(utils.uniqNames(input)).toEqual(new Set(["foo.png"]))
 	})
 })
 
 describe("isBaseVariant", () => {
 	test("foo@2x.png is a base variant of foo.png", () => {
-		assert.strictEqual(utils.isBaseVariant("foo.png", "foo@2x.png"), true)
+		expect(utils.isBaseVariant("foo.png", "foo@2x.png")).toBe(true)
 	})
 
 	test("foo@2x.png is not a base variant of bar.png", () => {
-		assert.strictEqual(utils.isBaseVariant("bar.png", "foo@2x.png"), false)
+		expect(utils.isBaseVariant("bar.png", "foo@2x.png")).toBe(false)
 	})
 })
 
@@ -44,7 +43,7 @@ const srcSet = \`\${src2x} 2x\`;
 export default { src, width, height, srcSet };
 `
 
-		assert.strictEqual(result, expected)
+		expect(result).toEqual(expected)
 	})
 	test("generates more variants", () => {
 		let result = utils.codegen("src/_tests/fixtures/smile.png", [
@@ -62,7 +61,7 @@ const srcSet = \`\${src2x} 2x, \${src3x} 3x\`;
 export default { src, width, height, srcSet };
 `
 
-		assert.strictEqual(result, expected)
+		expect(result).toEqual(expected)
 	})
 
 	test("it doesn't generate a srcset if there are no variants", () => {
@@ -75,6 +74,6 @@ const height = 107;
 export default { src, width, height };
 `
 
-		assert.strictEqual(result, expected)
+		expect(result).toEqual(expected)
 	})
 })

@@ -1,6 +1,6 @@
 {
 	"name": "srcset-codegen",
-	"description": "",
+	"description": "CLI to generates typescript srcset, width, height attributes from images in a directory",
 	"version": "1.0.16",
 	"author": "schpet",
 	"bin": {
@@ -17,11 +17,10 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
 		"@types/node": "^20.12.7",
-		"glob": "^10.4.1",
 		"tslib": "^2.6.2",
 		"tsup": "^8.0.2",
-		"tsx": "^4.11.0",
-		"typescript": "^5.4.5"
+		"typescript": "^5.4.5",
+		"vitest": "^1.6.0"
 	},
 	"files": [
 		"bin",
@@ -34,7 +33,7 @@
 	],
 	"license": "ISC",
 	"module": "./dist/cli.mjs",
-	"packageManager": "pnpm@9.1.2",
+	"packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/schpet/srcset-codegen.git"
@@ -43,9 +42,8 @@
 		"build": "tsup",
 		"check": "biome check --apply .",
 		"ci": "biome ci .",
-		"cli": "tsx src/cli",
+		"dev": "tsup --watch",
 		"fix": "biome check --apply-unsafe .",
-		"lint": "biome lint .",
-		"test": "glob -c \"tsx --test\" \"./src/**/*.test.ts\""
+		"test": "vitest"
 	}
 }
