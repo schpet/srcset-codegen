@@ -21,7 +21,7 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version-file: ".node-version"
           cache: "pnpm"
 
       - run: pnpm i
@@ -38,7 +38,7 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version-file: ".node-version"
           cache: "pnpm"
 
       - run: pnpm i
