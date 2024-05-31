@@ -1,7 +1,7 @@
 {
 	"name": "srcset-codegen",
 	"description": "CLI to generates typescript srcset, width, height attributes from images in a directory",
-	"version": "1.0.17",
+	"version": "1.0.18",
 	"author": "schpet",
 	"bin": {
 		"srcset-codegen": "bin/srcset-codegen.mjs"
